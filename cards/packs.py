@@ -34,10 +34,25 @@ def booster_pack(set_name):
     return 'pack'
 
 
-def booster_box(set_name):
+def get_mythic_count():
     # Bell curve random mythics
-    random_count
-    for i in range(6):
-        random_count += randint(1, 5)
-    mythic_count = 2 + floor(random_count)
+    rand = randint(0, 100)
+    if rand < 30:
+        count = 4
+    elif rand < 60:
+        count = 5
+    elif rand < 75:
+        count = 3
+    elif rand < 90:
+        count = 6
+    else:
+        count = 7
+    return count
 
+
+def booster_box(set_name):
+    box_set = get_set(set_name)
+    if box_set.mythics is not none:
+        mythic_count = get_mythic_count()
+    else:
+        mythic_count = 0

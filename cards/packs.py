@@ -39,7 +39,7 @@ class Booster_Box():
         self.assemble_packs()
 
     def get_mythic_count(self):
-        if self.set.mythics is not None:
+        if len(self.set.mythics) > 0:
             rand = randint(0, 100)
             if rand < 30:
                 return 4
@@ -75,3 +75,4 @@ class Booster_Box():
                 index = randint(0, len(self.set.rares)-1)
                 pack.append(self.set.rares[index])
             self.packs.append(pack)
+        shuffle(self.packs)

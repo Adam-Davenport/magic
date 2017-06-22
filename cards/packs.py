@@ -30,10 +30,6 @@ def get_set(set_name):
     return Set(mythics, rares, uncommons, commons)
 
 
-def booster_pack(set_name):
-    return 'pack'
-
-
 class Booster_Box():
 
     def __init__(self, set_name):

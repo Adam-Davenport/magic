@@ -34,25 +34,48 @@ def booster_pack(set_name):
     return 'pack'
 
 
-def get_mythic_count():
-    # Bell curve random mythics
-    rand = randint(0, 100)
-    if rand < 30:
-        count = 4
-    elif rand < 60:
-        count = 5
-    elif rand < 75:
-        count = 3
-    elif rand < 90:
-        count = 6
-    else:
-        count = 7
-    return count
+class Booster_Box():
 
+    def __init__(self, set_name):
+        self.set = get_set(set_name)
+        self.packs = []
+        self.mythic_count = self.get_mythic_count()
+        self.assemble_packs()
 
-def booster_box(set_name):
-    box_set = get_set(set_name)
-    if box_set.mythics is not none:
-        mythic_count = get_mythic_count()
-    else:
-        mythic_count = 0
+    def get_mythic_count(self):
+        if self.set.mythics is not None:
+            rand = randint(0, 100)
+            if rand < 30:
+                return 4
+            elif rand < 60:
+                return 5
+            elif rand < 75:
+                return 3
+            elif rand < 90:
+                return 6
+            else:
+                return 7
+        else:
+            return 0
+
+    def assemble_packs(self):
+        for i in range(1, 36):
+            pack = []
+            # Commons
+            for c in range(1, 11):
+                index = randint(0, len(self.set.commons)-1)
+                pack.append(self.set.commons[index])
+            # Uncommons
+            for u in range(1, 3):
+                index = randint(0, len(self.set.uncommons)-1)
+                pack.append(self.set.uncommons[index])
+            # Rare
+            shuffle(self.set.mythics)
+            if self.mythic_count > 0:
+                mythic = self.set.mythics[0]
+                self.mythic_count -= 1
+                pack.append(mythic)
+            else:
+                index = randint(0, len(self.set.rares)-1)
+                pack.append(self.set.rares[index])
+            self.packs.append(pack)

@@ -27,7 +27,6 @@ def Booster_View(request):
             'sets': sets
         }
         return render(request, 'cards/booster.html', context=context)
-
     elif request.method == 'POST':
         current_set = request.POST['set']
         boosters = Booster_Box(current_set)

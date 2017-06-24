@@ -55,7 +55,7 @@ class Booster_Box():
             return 0
 
     def assemble_packs(self):
-        for i in range(1, 36):
+        for i in range(0, 36):
             pack = []
             # Commons
             for c in range(1, 11):

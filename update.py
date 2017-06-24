@@ -6,11 +6,12 @@ import os
 def populate():
     from cards.models import Card
     print('Downloading all card data this will take some time...')
-    # cards = MagicCard.all()
-    cards = MagicCard.where(supertypes='legendary') \
-        .where(types='creature') \
-        .where(colors='red,white') \
-        .all()
+    cards = MagicCard.all()
+    # cards = MagicCard.where(supertypes='legendary') \
+    #     .where(types='creature') \
+    #     .where(colors='red,white') \
+    #     .all()
+    print('Adding cards to database')
     for c in cards:
         card = Card.objects.create(
             name=c.name,
@@ -18,6 +19,7 @@ def populate():
             rarity=c.rarity
         )
         card.save()
+        print(card)
 
 if __name__ == '__main__':
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "magic.settings")

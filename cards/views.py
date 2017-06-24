@@ -35,4 +35,3 @@ def Booster_View(request):
             'sets': sets,
         }
         return render(request, 'cards/booster.html', context=context)
-

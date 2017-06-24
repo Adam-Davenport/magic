@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Booster</title>
+</head>
+<body>
+    <h1>Start a Booster Pack Battle</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="{{set}}">Set:</label>
+        <select name="set" id="set">
+            {% for set in sets %}
+            <div class="form_group">
+                <option value="{{set}}">{{set}}</option>
+            </div>
+            {% endfor %}
+        </select>
+        <input type="submit">
+    </form>
+    {% for booster in boosters %}
+    <h1>Pack</h1>
+        {% for card in booster %}
+            <p>{{card.name}}</p>
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from cards.packs import get_set, Booster_Box
+from cards.models import Card
 
 
 # Create your views here.
@@ -16,9 +17,23 @@ def Set_View(request):
 
 
 def Booster_View(request):
+    sets = Card.objects.values('set').distinct()
+    sets = [set['set'] for set in sets]
+    sets.sort()
     if request.method == 'GET':
         boosters = Booster_Box('ATQ')
         context = {
-            'boosters': boosters.packs
+            'boosters': boosters.packs,
+            'sets': sets
         }
         return render(request, 'cards/booster.html', context=context)
+
+    elif request.method == 'POST':
+        current_set = request.POST['set']
+        boosters = Booster_Box(current_set)
+        context = {
+            'boosters': boosters.packs,
+            'sets': sets,
+        }
+        return render(request, 'cards/booster.html', context=context)
+

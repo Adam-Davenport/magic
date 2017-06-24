@@ -2,6 +2,7 @@
 migrations
 /static
 /media
+.vscode
 
 # Ignoring pycache
 __pycache__

@@ -3,6 +3,7 @@
     <h1>Start a Booster Pack Battle</h1>
     <form action="" method="POST">
         {% csrf_token %}
+        <div class="form-group">
         <label for="{{set}}">Set:</label>
         <select name="set" id="set">
             {% for set in sets %}
@@ -11,6 +12,7 @@
             </div>
             {% endfor %}
         </select>
+        </div>
         <input type="submit">
     </form>
     {% for booster in boosters %}

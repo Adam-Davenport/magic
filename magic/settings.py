@@ -16,8 +16,13 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Template directories
-Template_Dir = os.path.join(BASE_DIR, 'cards', 'templates')
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'cards', 'templates')
 
+# Static directories
+STATIC_DIR = os.path.join(BASE_DIR, 'cards', 'static')
+
+# Media directory
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/

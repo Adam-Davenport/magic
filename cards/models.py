@@ -9,3 +9,13 @@ class Card(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Pack(models.Model):
+    set_name = models.CharField(max_length=3)
+    cards = models.FileField()
+
+
+class Battle_Pack(models.Model):
+    set_name = models.CharField(max_length=3)
+    cards = models.FileField

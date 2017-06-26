@@ -5,6 +5,7 @@ from django.db import models
 class Card(models.Model):
     name = models.CharField(max_length=100)
     set = models.CharField(max_length=3)
+    set_name = models.CharField(max_length=128)
     rarity = models.CharField(max_length=10)
 
     def __str__(self):
@@ -13,4 +14,4 @@ class Card(models.Model):
 
 class Battle_Pack(models.Model):
     set_name = models.CharField(max_length=3)
-    cards = models.FileField
+    cards = models.FileField(upload_to='packs')

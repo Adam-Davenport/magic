@@ -30,6 +30,34 @@ def get_set(set_name):
     return Set(mythics, rares, uncommons, commons)
 
 
+class Booster_Pack():
+
+    def __init__(self, set_name):
+        self.set = get_set(set_name)
+        self.cards = []
+        self.assemble_pack()
+
+    def assemble_pack(self):
+        # Commons
+        for c in range(1, 11):
+            index = randint(0, len(self.set.commons)-1)
+            self.cards.append(self.set.commons[index])
+        # Uncommons
+        for u in range(1, 3):
+            index = randint(0, len(self.set.uncommons)-1)
+            self.cards.append(self.set.uncommons[index])
+        # Rare
+        mythic_chance = randint(1, 7)
+        if mythic_chance == 7:
+            index = randint(0, len(self.set.mythics)-1)
+            mythic = self.set.mythics[index]
+            self.mythic_count -= 1
+            self.cards.append(mythic)
+        else:
+            index = randint(0, len(self.set.rares)-1)
+            self.cards.append(self.set.rares[index])
+
+
 class Booster_Box():
 
     def __init__(self, set_name):
@@ -68,7 +96,8 @@ class Booster_Box():
             # Rare
             shuffle(self.set.mythics)
             if self.mythic_count > 0:
-                mythic = self.set.mythics[0]
+                index = randint(0, len(self.set.mythics)-1)
+                mythic = self.set.mythics[index]
                 self.mythic_count -= 1
                 pack.append(mythic)
             else:

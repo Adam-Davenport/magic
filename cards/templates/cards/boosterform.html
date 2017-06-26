@@ -11,28 +11,36 @@
             </div>
             {% endfor %}
         </select>
-        <div class="checkbox">
-            <label>
-                <input type="radio" name="packtype" id="opt1" value="single">
-                Single Pack
-            </label>
+        <div class="radios">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="packtype" id="opt1" value="single" checked>
+                    Single Pack
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="packtype" id="opt2" value="draft">
+                    Draft (3 packs)
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="packtype" id="opt3" value="sealed">
+                    Sealed (6 packs)
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="packtype" id="opt4" value="box">
+                    Booster Box (36 packs)
+                </label>
+            </div>
         </div>
         <div class="checkbox">
-            <label>
-                <input type="radio" name="packtype" id="opt2" value="draft">
-                Draft (3 packs)
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="radio" name="packtype" id="opt3" value="sealed">
-                Sealed (6 packs)
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="radio" name="packtype" id="opt4" value="box">
-                Booster Box (36 packs)
+            <label for="battle">
+                <input type="checkbox">
+                Booster Pack Battle
             </label>
         </div>
         </div>

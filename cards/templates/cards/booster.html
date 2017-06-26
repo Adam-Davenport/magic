@@ -5,7 +5,7 @@
         {% csrf_token %}
         <div class="form-group">
         <label for="{{set}}">Set:</label>
-        <select name="set" id="set">
+        <select name="set" id="set" class="form-control">
             {% for set in sets %}
             <div class="form_group">
                 <option value="{{set}}">{{set}}</option>

@@ -43,10 +43,10 @@ def Booster_View(request):
                 packs.append(Create_Battle_Pack(b, current_set))
 
             context = {
-                # 'boosters': boosters,
+                'packs': packs,
                 'sets': sets,
             }
-            return render(request, 'cards/booster.html', context=context)
+            return render(request, 'cards/battledecks.html', context=context)
         else:
             context = {
                 'boosters': boosters,

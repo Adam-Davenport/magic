@@ -46,7 +46,7 @@ def Booster_View(request):
                 # 'boosters': boosters,
                 'sets': sets,
             }
-            return render(requets, 'cards/booster.html', context=context)
+            return render(request, 'cards/booster.html', context=context)
         else:
             context = {
                 'boosters': boosters,

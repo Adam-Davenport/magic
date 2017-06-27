@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from cards.packs import get_set, Booster_Box
-from cards.models import Card
+from cards.packs import get_set, Booster_Box, Booster_Pack
+from cards.models import Card, Battle_Pack
 
 
 # Create your views here.
@@ -27,9 +27,24 @@ def Booster_View(request):
         return render(request, 'cards/boosterform.html', context=context)
     elif request.method == 'POST':
         current_set = request.POST['set']
-        boosters = Booster_Box(current_set)
+        if request.POST['packtype'] == 'single':
+            boosters = Individual_Packs(current_set, 1)
+        elif request.POST['packtype'] == 'draft':
+            boosters = Individual_Packs(current_set, 3)
+        elif request.POST['packtype'] == 'sealed':
+            boosters = Individual_Packs(current_set, 6)
+        else:
+            boosters = Booster_Box(current_set).packs
         context = {
-            'boosters': boosters.packs,
+            'boosters': boosters,
             'sets': sets,
         }
         return render(request, 'cards/booster.html', context=context)
+
+
+def Individual_Packs(set_name, amount):
+    boosters = []
+    for p in range(amount):
+        booster = Booster_Pack(set_name)
+        boosters.append(booster)
+    return boosters

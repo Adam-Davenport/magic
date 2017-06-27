@@ -108,7 +108,7 @@ class Booster_Box():
 
 def Create_Battle_Pack(pack):
     # Create temp dec file
-    file = open('tempdeckfile.dec')
+    file = open('tempdeckfile.dec', 'w')
     for card in pack:
         file.write('1 {}'.format(card.name))
     land = ['Swamp', 'Mountain', 'Plains', 'Forrest', 'Island']

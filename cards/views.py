@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from cards.packs import get_set, Booster_Box, Booster_Pack
+from cards.packs import get_set, Booster_Box, Booster_Pack, Create_Battle_Pack
 from cards.models import Card, Battle_Pack
 
 
@@ -27,6 +27,7 @@ def Booster_View(request):
         return render(request, 'cards/boosterform.html', context=context)
     elif request.method == 'POST':
         current_set = request.POST['set']
+        # Decide how the booster is assembled
         if request.POST['packtype'] == 'single':
             boosters = Individual_Packs(current_set, 1)
         elif request.POST['packtype'] == 'draft':
@@ -35,11 +36,23 @@ def Booster_View(request):
             boosters = Individual_Packs(current_set, 6)
         else:
             boosters = Booster_Box(current_set).packs
-        context = {
-            'boosters': boosters,
-            'sets': sets,
-        }
-        return render(request, 'cards/booster.html', context=context)
+        # Decide what page is presented to the user
+        if request.POST['battle']:
+            packs = []
+            for b in boosters:
+                packs.append(Create_Battle_Pack(b))
+
+            context = {
+                # 'boosters': boosters,
+                'sets': sets,
+            }
+            return render(requets, 'cards/booster.html', context=context)
+        else:
+            context = {
+                'boosters': boosters,
+                'sets': sets,
+            }
+            return render(request, 'cards/booster.html', context=context)
 
 
 def Individual_Packs(set_name, amount):

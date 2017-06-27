@@ -40,7 +40,7 @@ def Booster_View(request):
         if request.POST['battle']:
             packs = []
             for b in boosters:
-                packs.append(Create_Battle_Pack(b))
+                packs.append(Create_Battle_Pack(b, current_set))
 
             context = {
                 # 'boosters': boosters,

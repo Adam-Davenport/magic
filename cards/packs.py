@@ -110,14 +110,15 @@ def Create_Battle_Pack(pack, set_name):
     # Create temp dec file
     file = open('tempdeckfile.dec', 'w')
     for card in pack:
-        file.write('1 {}'.format(card.name))
+        file.write('1 {}\n'.format(card.name))
     land = ['Swamp', 'Mountain', 'Plains', 'Forrest', 'Island']
     for l in land:
-        file.write('2 {}'.format(l))
+        file.write('2 {}\n'.format(l))
+    file_location = file.name
+    file.close()
     bp = Battle_Pack(
         set_name=set_name,
-        cards=file
+        cards=file_location
     )
     bp.save()
-    file.close()
     return bp

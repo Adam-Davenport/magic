@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block body_block %}
+    {% for pack in packs %}
+        <div class="col-sm-4">
+            <a href="{{pack.cards.url}}" class="btn btn-default">Download</a>
+        </div>
+    {% endfor %}
+{% endblock body_block %}

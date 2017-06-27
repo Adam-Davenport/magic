@@ -106,7 +106,7 @@ class Booster_Box():
         shuffle(self.packs)
 
 
-def Create_Battle_Pack(pack):
+def Create_Battle_Pack(pack, set_name):
     # Create temp dec file
     file = open('tempdeckfile.dec', 'w')
     for card in pack:
@@ -115,7 +115,7 @@ def Create_Battle_Pack(pack):
     for l in land:
         file.write('2 {}'.format(l))
     bp = Battle_Pack(
-        set_name=pack.set,
+        set_name=set_name,
         cards=file
     )
     bp.save()

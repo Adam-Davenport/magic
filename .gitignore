@@ -3,6 +3,7 @@ migrations
 /static
 /media
 .vscode
+tempdeckfile.dec
 
 # Ignoring pycache
 __pycache__

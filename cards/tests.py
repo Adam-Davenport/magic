@@ -1,12 +1,16 @@
 from django.test import TestCase
-from cards.packs import get_set
+from cards.packs import Booster_Pack, Create_Battle_Pack, Booster_Box, get_set
 
 
 # Create your tests here.
-def test_set():
-    card_set = get_set('AVR')
-    for c in card_set:
-        print(c)
+class BoosterTest(TestCase):
+    def setUp(self):
+        current_set = 'AVR'
+        self.booster = Booster_Pack(current_set)
+        test_set = get_set('AVR')
+        print(len(test_set.commons))
+        # print(len(box.set.commons))
 
-if __name__ == '__main__':
-    test_set()
+    def test_battle_pack(self):
+        print('test')
+        # Create_Battle_Pack(self.booster)

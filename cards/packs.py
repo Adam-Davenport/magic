@@ -1,4 +1,4 @@
-from cards.models import Card
+from cards.models import Card, Battle_Pack
 from random import randint, shuffle
 from math import floor
 
@@ -51,7 +51,6 @@ class Booster_Pack():
         if mythic_chance == 7:
             index = randint(0, len(self.set.mythics)-1)
             mythic = self.set.mythics[index]
-            self.mythic_count -= 1
             self.cards.append(mythic)
         else:
             index = randint(0, len(self.set.rares)-1)
@@ -105,3 +104,20 @@ class Booster_Box():
                 pack.append(self.set.rares[index])
             self.packs.append(pack)
         shuffle(self.packs)
+
+
+def Create_Battle_Pack(pack):
+    # Create temp dec file
+    file = open('tempdeckfile.dec')
+    for card in pack:
+        file.write('1 {}'.format(card.name))
+    land = ['Swamp', 'Mountain', 'Plains', 'Forrest', 'Island']
+    for l in land:
+        file.write('2 {}'.format(l))
+    bp = Battle_Pack(
+        set_name=pack.set,
+        cards=file
+    )
+    bp.save()
+    file.close()
+    return bp

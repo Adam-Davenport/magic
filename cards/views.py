@@ -46,5 +46,5 @@ def Individual_Packs(set_name, amount):
     boosters = []
     for p in range(amount):
         booster = Booster_Pack(set_name)
-        boosters.append(booster)
+        boosters.append(booster.cards)
     return boosters

@@ -121,7 +121,7 @@ def Create_Battle_Pack(pack, set_name):
         set_name=set_name,
     )
     bp.save()
-    file_name = 'pack{}.dec'.format(str(bp.pk))
+    file_name = 'boosterdeck{}.dec'.format(str(bp.pk))
     bp.cards.save(file_name, open(file_location, 'r'))
     bp.save()
     return bp

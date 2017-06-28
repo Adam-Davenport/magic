@@ -1,0 +1,8 @@
+<h1>Booster Pack Battles</h1>
+{% if len(packs) >1 %}
+    {% for pack in packs %}
+    <div class="col-sm-4">
+        <a href"{{pack.url}}" download="true" class="btn btn-default">Download</a>
+    </div>
+    {% endif %}
+{% endif %}

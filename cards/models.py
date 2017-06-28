@@ -12,5 +12,6 @@ class Card(models.Model):
 
 
 class Battle_Pack(models.Model):
+    id = models.AutoField(primary_key=True)
     set_name = models.CharField(max_length=3)
     cards = models.FileField(upload_to='packs')

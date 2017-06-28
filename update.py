@@ -19,7 +19,6 @@ def populate():
             rarity=c.rarity
         )
         card.save()
-        print(card)
 
 if __name__ == '__main__':
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "magic.settings")

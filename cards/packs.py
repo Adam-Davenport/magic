@@ -116,9 +116,12 @@ def Create_Battle_Pack(pack, set_name):
         file.write('2 {}\n'.format(l))
     file_location = file.name
     file.close()
-    bp = Battle_Pack(
+    # Create record in database
+    bp = Battle_Pack.objects.create(
         set_name=set_name,
-        cards=file_location
     )
+    bp.save()
+    file_name = 'pack{}.dec'.format(str(bp.pk))
+    bp.cards.save(file_name, open(file_location, 'r'))
     bp.save()
     return bp

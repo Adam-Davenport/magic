@@ -125,3 +125,48 @@ def Create_Battle_Pack(pack, set_name):
     bp.cards.save(file_name, open(file_location, 'r'))
     bp.save()
     return bp
+
+
+class Booster():
+
+    def __init__(self, set, amount):
+        self.packs = []
+        self.set = self.get_set()
+
+    def get_set(self):
+        cards = Card.objects.filter(set=set_name)
+        mythics = []
+        rares = []
+        uncommons = []
+        commons = []
+        for card in cards:
+            if card.rarity == 'Mythic Rare':
+                mythics.append(card)
+            elif card.rarity == 'Rare':
+                rares.append(card)
+            elif card.rarity == 'Uncommon':
+                uncommons.append(card)
+            elif card.rarity == 'Common':
+                commons.append(card)
+        return Set(mythics, rares, uncommons, commons)
+
+    def single(self):
+        cards = []
+        # Commons
+        for c in range(1, 11):
+            index = randint(0, len(self.set.commons)-1)
+            cards.append(self.set.commons[index])
+        # Uncommons
+        for u in range(1, 3):
+            index = randint(0, len(self.set.uncommons)-1)
+            cards.append(self.set.uncommons[index])
+        # Rare
+        mythic_chance = randint(1, 7)
+        if mythic_chance == 7:
+            index = randint(0, len(self.set.mythics)-1)
+            mythic = self.set.mythics[index]
+            cards.append(mythic)
+        else:
+            index = randint(0, len(self.set.rares)-1)
+            cards.append(self.set.rares[index])
+        return cards

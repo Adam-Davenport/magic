@@ -19,7 +19,7 @@ def Set_View(request):
 def Booster_View(request):
     sets = Card.objects.values('set').distinct()
     sets = [set['set'] for set in sets]
-    sets.sort()
+    # sets.sort()
     if request.method == 'GET':
         context = {
             'sets': sets
@@ -37,7 +37,7 @@ def Booster_View(request):
         else:
             boosters = Booster_Box(current_set).packs
         # Decide what page is presented to the user
-        if request.POST['battle']:
+        if 'battle' in request.POST:
             packs = []
             for b in boosters:
                 packs.append(Create_Battle_Pack(b, current_set))

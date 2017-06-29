@@ -22,6 +22,7 @@ class Booster():
         else:
             self.single(amount)
 
+    # Get all cards in the current set
     def get_set(self, set_name):
         cards = Card.objects.filter(set_name=set_name)
         mythics = []
@@ -39,6 +40,7 @@ class Booster():
                 commons.append(card)
         return Set(mythics, rares, uncommons, commons)
 
+    # Generate boosters as though they are singles
     def single(self, amount):
         for i in range(amount):
             pack = []
@@ -61,6 +63,7 @@ class Booster():
                 pack.append(self.set.rares[index])
             self.packs.append(pack)
 
+    # Determine how many mythics will be in a booster box
     def get_mythic_count(self):
         if len(self.set.mythics) > 0:
             rand = randint(0, 100)
@@ -77,6 +80,7 @@ class Booster():
         else:
             return 0
 
+    # Generate an entire booster box
     def box(self):
         self.mythic_count = self.get_mythic_count()
         for i in range(0, 36):
@@ -102,6 +106,7 @@ class Booster():
             self.packs.append(pack)
         shuffle(self.packs)
 
+    # Create a dec file from the pack with 2 of each lands
     def battle_pack(self):
         # Create temp dec file
         self.battle_packs = []

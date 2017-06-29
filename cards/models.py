@@ -11,7 +11,12 @@ class Card(models.Model):
         return self.name
 
 
+class Battle(models.Model):
+    set_name = models.CharField(max_length=3)
+    date = models.DateField(auto_now_add=True, blank=True)
+
+
 class Battle_Pack(models.Model):
-    id = models.AutoField(primary_key=True)
     set_name = models.CharField(max_length=3)
     cards = models.FileField(upload_to='packs')
+    battle = models.ForeignKey(Battle)

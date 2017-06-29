@@ -50,3 +50,8 @@ def Individual_Packs(set_name, amount):
         booster = Booster_Pack(set_name)
         boosters.append(booster.cards)
     return boosters
+
+
+def Battle_View(request):
+    if request.method == 'GET':
+        pk = request.GET["id"]

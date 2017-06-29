@@ -54,7 +54,7 @@ class Booster():
                 pack.append(self.set.uncommons[index])
             # Rare
             mythic_chance = randint(1, 7)
-            if mythic_chance == 7:
+            if mythic_chance == 7 and len(self.set.mythics) > 0:
                 index = randint(0, len(self.set.mythics)-1)
                 mythic = self.set.mythics[index]
                 pack.append(mythic)

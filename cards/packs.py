@@ -112,7 +112,7 @@ class Booster():
         # Create temp dec file
         self.battle_packs = []
         self.battle = Battle.objects.create(
-            set_name=self.set,
+            set_name=self.set_name,
         )
         for pack in self.packs:
             file = open('tempdeckfile.dec', 'w')

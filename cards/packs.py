@@ -238,4 +238,3 @@ class Booster():
             bp.cards.save(file_name, open(file_location, 'r'))
             bp.save()
             self.battle_packs.append(bp)
-

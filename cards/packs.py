@@ -217,7 +217,7 @@ class Booster():
             self.packs.append(pack)
         shuffle(self.packs)
 
-    def Battle_Pack():
+    def battle_pack():
         # Create temp dec file
         self.battle_packs = []
         for pack in self.packs:

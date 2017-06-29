@@ -231,7 +231,7 @@ class Booster():
             file.close()
             # Create record in database
             bp = Battle_Pack.objects.create(
-                set_name=set_name,
+                set_name=self.set,
             )
             bp.save()
             file_name = 'boosterdeck{}.dec'.format(str(bp.pk))

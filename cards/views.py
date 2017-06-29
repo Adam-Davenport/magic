@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from cards.packs import get_set, Booster_Box, Booster_Pack, Create_Battle_Pack
+from cards.packs import get_set, Booster_Box, Booster_Pack, Create_Battle_Pack, Booster
 from cards.models import Card, Battle_Pack
 
 
@@ -17,9 +17,8 @@ def Set_View(request):
 
 
 def Test_Booster_View(request):
-    sets = Card.objects.values('set').distinct()
-    sets = [set['set'] for set in sets]
-    # sets.sort()
+    sets = Card.objects.values('set_name').distinct()
+    sets = [set['set_name'] for set in sets]
     if request.method == 'GET':
         context = {
             'sets': sets
@@ -27,33 +26,22 @@ def Test_Booster_View(request):
         return render(request, 'cards/boosterform.html', context=context)
     elif request.method == 'POST':
         current_set = request.POST['set']
-        # Decide how the booster is assembled
-        if request.POST['packtype'] == 'single':
-            boosters = Individual_Packs(current_set, 1)
-        elif request.POST['packtype'] == 'draft':
-            boosters = Individual_Packs(current_set, 3)
-        elif request.POST['packtype'] == 'sealed':
-            boosters = Individual_Packs(current_set, 6)
-        else:
-            boosters = Booster_Box(current_set).packs
+        amount = int(request.POST['packtype'])
+        boosters = Booster(current_set, amount)
         # Decide what page is presented to the user
         if 'battle' in request.POST:
-            packs = []
-            for b in boosters:
-                packs.append(Create_Battle_Pack(b, current_set))
-
+            boosters.battle_pack()
             context = {
-                'packs': packs,
+                'packs': boosters.battle_packs,
                 'sets': sets,
             }
             return render(request, 'cards/battledecks.html', context=context)
         else:
             context = {
-                'boosters': boosters,
+                'boosters': boosters.packs,
                 'sets': sets,
             }
             return render(request, 'cards/booster.html', context=context)
-
 
 
 def Booster_View(request):

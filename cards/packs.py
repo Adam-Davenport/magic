@@ -217,4 +217,25 @@ class Booster():
             self.packs.append(pack)
         shuffle(self.packs)
 
+    def Battle_Pack():
+        # Create temp dec file
+        self.battle_packs = []
+        for pack in self.packs:
+            file = open('tempdeckfile.dec', 'w')
+            for card in pack:
+                file.write('1 {}\n'.format(card.name))
+            land = ['Swamp', 'Mountain', 'Plains', 'Forrest', 'Island']
+            for l in land:
+                file.write('2 {}\n'.format(l))
+            file_location = file.name
+            file.close()
+            # Create record in database
+            bp = Battle_Pack.objects.create(
+                set_name=set_name,
+            )
+            bp.save()
+            file_name = 'boosterdeck{}.dec'.format(str(bp.pk))
+            bp.cards.save(file_name, open(file_location, 'r'))
+            bp.save()
+            self.battle_packs.append(bp)
 

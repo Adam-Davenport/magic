@@ -13,7 +13,7 @@ class Set():
 
 
 def get_set(set_name):
-    cards = Card.objects.filter(set=set_name)
+    cards = Card.objects.filter(set_name=set_name)
     mythics = []
     rares = []
     uncommons = []
@@ -138,7 +138,7 @@ class Booster():
             self.single(amount)
 
     def get_set(self, set_name):
-        cards = Card.objects.filter(set=set_name)
+        cards = Card.objects.filter(set_name=set_name)
         mythics = []
         rares = []
         uncommons = []

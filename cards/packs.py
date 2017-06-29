@@ -17,6 +17,7 @@ class Booster():
     def __init__(self, set_name, amount):
         self.packs = []
         self.set = self.get_set(set_name)
+        self.set_name = set_name
         if amount == 36:
             self.box()
         else:

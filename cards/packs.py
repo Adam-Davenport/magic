@@ -1,4 +1,4 @@
-from cards.models import Card, Battle_Pack
+from cards.models import Card, Battle_Pack, Battle
 from random import randint, shuffle
 from math import floor
 
@@ -110,6 +110,9 @@ class Booster():
     def battle_pack(self):
         # Create temp dec file
         self.battle_packs = []
+        self.battle = Battle.objects.create(
+            set_name=self.set,
+        )
         for pack in self.packs:
             file = open('tempdeckfile.dec', 'w')
             for card in pack:
@@ -122,6 +125,7 @@ class Booster():
             # Create record in database
             bp = Battle_Pack.objects.create(
                 set_name=self.set,
+                battle=self.battle
             )
             bp.save()
             file_name = 'boosterdeck{}.dec'.format(str(bp.pk))

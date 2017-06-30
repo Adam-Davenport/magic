@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from cards.packs import Booster
-from cards.models import Card, Battle_Pack
+from cards.models import Card, Battle_Pack, Battle
 
 
 # Create your views here.
@@ -35,7 +35,7 @@ def Booster_View(request):
                 'packs': boosters.battle_packs,
                 'sets': sets,
             }
-            return render(request, 'cards/battledecks.html', context=context)
+            return render(request, 'cards/battle.html', context=context)
         else:
             context = {
                 'boosters': boosters.packs,
@@ -52,9 +52,17 @@ def Individual_Packs(set_name, amount):
     return boosters
 
 
-def Battle_View(request):
+def Battle_List_View(request):
     if request.method == 'GET':
-        pk = request.GET["id"]
+        battles = Battle.objects.all()
+        context = {
+            'battles': battles
+        }
+        return render(request, 'cards/battle_list.html', context=context)
+
+
+def Battle_View(request, pk):
+    if request.method == 'GET':
         battle = Battle.objects.get(pk=pk)
         packs = Battle_Pack.objects.filter(battle=battle)
         context = {

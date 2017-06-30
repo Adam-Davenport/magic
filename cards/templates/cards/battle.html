@@ -1,8 +1,10 @@
-<h1>Booster Pack Battles</h1>
-{% if len(packs) >1 %}
+{% extends "base.html" %}
+{% block body_block %}
+{% load static %}
+    <link rel="stylesheet" href="{% static "css/battle.css" %}">
     {% for pack in packs %}
-    <div class="col-sm-4">
-        <a href"{{pack.url}}" download="true" class="btn btn-default">Download</a>
-    </div>
-    {% endif %}
-{% endif %}
+        <div class="col-sm-4 deck">
+            <a href="{{pack.cards.url}}" class="btn btn-primary btn-lg btn-block">Download</a>
+        </div>
+    {% endfor %}
+{% endblock body_block %}

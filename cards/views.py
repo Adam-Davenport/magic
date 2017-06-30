@@ -55,3 +55,9 @@ def Individual_Packs(set_name, amount):
 def Battle_View(request):
     if request.method == 'GET':
         pk = request.GET["id"]
+        battle = Battle.objects.get(pk=pk)
+        packs = Battle_Pack.objects.filter(battle=battle)
+        context = {
+            'packs': packs,
+        }
+        return render(request, 'cards/battle.html', context=context)

@@ -3,7 +3,10 @@ from cards.packs import Booster
 from cards.models import Card, Battle_Pack, Battle
 
 
-# Create your views here.
+def Index_View(request):
+    return render(request, 'cards/index.html')
+
+
 def Set_View(request):
     if request.method == 'GET':
         card_set = get_set('AVR')

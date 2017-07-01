@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block body_block %}
+    <h1>Recent Battles</h1>
     {% for battle in battles %}
         <h2><a href="{% url 'cards:battle_details' pk=battle.pk %}">{{battle.set_name}} {{battle.date}}</a></h2>
     {% endfor %}

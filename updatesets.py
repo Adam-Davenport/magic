@@ -1,4 +1,5 @@
 from mtgsdk import Set as Mtg_Set
+from datetime import datetime
 import django
 import os
 
@@ -9,10 +10,10 @@ def populate():
     sets = Mtg_Set.all()
     print('Adding sets')
     for s in sets:
-        mtg_set = Set.objects.create(
+        s.release_date = datetime.strptime(s.release_date, '%Y-%m-%d')
+        mtg_set = Set.objects.get_or_create(
             code=s.code,
             name=s.name,
-            gatherer_code=s.gatherer_code,
             release_date=s.release_date
         )
 

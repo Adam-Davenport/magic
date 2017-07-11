@@ -5,8 +5,11 @@ from sets.models import Set
 
 def Index_View(request):
     if request.method == 'GET':
-        setlist = Get_Sets()
-        sets = Set.objects.filter(code__in=setlist)
+        try:
+            setlist = Get_Sets()
+            sets = Set.objects.filter(code__in=setlist)
+        except FileNotFoundError:
+            sets = Set.objects.all()
         context = {
             'sets': sets
         }

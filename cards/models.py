@@ -6,6 +6,8 @@ class Card(models.Model):
     name = models.CharField(max_length=100)
     set_name = models.CharField(max_length=3)
     rarity = models.CharField(max_length=10)
+    multiverse_id = models.IntegerField()
+    image_url = models.URLField()
 
     def __str__(self):
         return self.name

@@ -14,7 +14,7 @@ def populate():
             set=c.set,
             rarity=c.rarity,
             image_url=c.image_url,
-            multiverse_id=c.multiverse_id,
+            multiverse_id=int(c.multiverse_id),
         )
         card.save()
 

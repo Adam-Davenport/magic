@@ -7,8 +7,8 @@ class Card(models.Model):
     name = models.CharField(max_length=100)
     mtg_set = models.ForeignKey(Set)
     rarity = models.CharField(max_length=10)
-    multiverse_id = models.IntegerField()
-    image_url = models.URLField()
+    multiverse_id = models.IntegerField(null=True, blank=True)
+    image_url = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.name

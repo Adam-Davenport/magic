@@ -18,7 +18,8 @@ def Index_View(request):
 def Details_View(request, pk):
     if request.method == 'GET':
         current_set = get_object_or_404(Set, pk=pk)
-        cards = Card.objects.filter(set_name=pk)
+        cards = Card.objects.filter(set_name=pk).order_by('name')
+        # Separate cards into rarity
         mythics = []
         rares = []
         uncommons = []

@@ -5,7 +5,7 @@ from sets.models import Set
 # Create your models here.
 class Card(models.Model):
     name = models.CharField(max_length=100)
-    set_name = models.ForeignKey(Set)
+    mtg_set = models.ForeignKey(Set)
     rarity = models.CharField(max_length=10)
     multiverse_id = models.IntegerField()
     image_url = models.URLField()

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block body_block %}
+    <h1>{{set.name}}</h1>
+    {% if cards.mythics %}
+        <h2>Mythics</h2>
+        {% for card in cards.mythics %}
+            <p>{{card.name}}</p>
+        {% endfor %}
+    {% endif %}
+    <h2>Rares</h2>
+    {% for card in cards.rares %}
+        <p>{{card.name}}</p>
+    {% endfor %}
+    <h2>Uncommons</h2>
+    {% for card in cards.uncommons %}
+        <p>{{card.name}}</p>
+    {% endfor %}
+    <h2>Commons</h2>
+    {% for card in cards.commons %}
+        <p>{{card.name}}</p>
+    {% endfor %}
+{% endblock body_block %}

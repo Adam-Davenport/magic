@@ -7,16 +7,14 @@ def populate():
     from cards.models import Card
     print('Downloading all card data this will take some time...')
     cards = MagicCard.all()
-    # cards = MagicCard.where(supertypes='legendary') \
-    #     .where(types='creature') \
-    #     .where(colors='red,white') \
-    #     .all()
     print('Adding cards to database')
     for c in cards:
         card = Card.objects.create(
             name=c.name,
             set=c.set,
-            rarity=c.rarity
+            rarity=c.rarity,
+            image_url=c.image_url,
+            multiverse_id=c.multiverse_id,
         )
         card.save()
 

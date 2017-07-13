@@ -14,12 +14,13 @@ def populate():
     #     .all()
     print('Adding cards to database')
     for c in cards:
+        card_set = Set.objects.get(pk=c.set)
         card = Card.objects.create(
             name=c.name,
-            set_name=c.set,
+            mtg_set=card_set,
             rarity=c.rarity,
             image_url=c.image_url,
-            multiverse_id=int(c.multiverse_id),
+            multiverse_id=c.multiverse_id,
         )
         card.save()
 

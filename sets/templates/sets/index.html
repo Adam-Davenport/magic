@@ -1,18 +1,21 @@
 {% extends "base.html" %}
 {% block body_block %}
 <h1>Sets</h1>
-<table class="table">
+{% for set in sets %}
+    <h2><a href="{% url 'sets:details' pk=set.pk %}">{{set.pk}}</a></h2>
+{% endfor %}
+<table class="">
     <tr>
         <th>Set</th>
         <th>Release Date</th>
     </tr>
-    {% for set in sets %}
+    {% for s in sets %}
         <tr>
             <td>
-                <a href="#">{{set.name}}</a>
+                <a href"{% url 'sets:details' pk=s.pk %}">{{s.name}} {{s.pk}}</a>
             </td>
             <td>
-                {{set.release_date}}
+                {{s.release_date}}
             </td>
         </tr>
     {% endfor %}

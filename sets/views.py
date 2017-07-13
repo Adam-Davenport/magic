@@ -7,8 +7,6 @@ from cards.models import Card
 def Index_View(request):
     if request.method == 'GET':
         sets = Set.objects.all()
-        for set in sets:
-            print(set.pk)
         context = {
             'sets': sets
         }

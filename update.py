@@ -5,6 +5,7 @@ import os
 
 def populate():
     from cards.models import Card
+    from sets.models import Set
     print('Downloading all card data this will take some time...')
     cards = MagicCard.all()
     # cards = MagicCard.where(supertypes='legendary') \
